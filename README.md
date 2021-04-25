@@ -4,7 +4,7 @@
 
 ## Description
 
-This app uses the News API to help users see various news sources, view news articles form a specific source, see the news article's details and redirects the user to the source's website to read full article.
+This is a small application built with Python's Flask framework. It aims to help users get peer-feedback on pitches. The application utilizes authentication, PostgresDB and automated emails just to mention a few features.
 
 ## Setup/Installation Requirements
 
