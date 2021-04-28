@@ -1,14 +1,17 @@
+from flask import Markup
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, SelectField, SubmitField
+from wtforms import StringField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import Required
 
 
 class BioUpdateForm(FlaskForm):
+    bioLabel = Markup(" <p class='custom-bold-body mb-0'>Enter first name</p>") 
     new_biography = TextAreaField('Update your bios')
-    submit_button = SubmitField('save')
+
 
 
 class PitchForm(FlaskForm):
-    new_pitch = TextAreaField('Enter your pitch here')
-    category = SelectField('Select a category', coerce='unicode', validators=[Required()])
-    submit_button = SubmitField('post')
+    pitchLabel = Markup(" <p class='custom-bold-body mb-0'>Post new pitch</p>")
+    categoryLabel = Markup(" <p class='custom-bold-body mb-0'>Post new pitch</p>")
+    new_pitch = TextAreaField(pitchLabel)
+    category = SelectField(categoryLabel, coerce='unicode', validators=[Required()])
