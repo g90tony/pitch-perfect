@@ -1,6 +1,6 @@
 .custom-bold-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   color: #2f5c75;
   font-family: "Century Gothic";
 }
@@ -16,4 +16,21 @@
   font-size: 14px;
   color: #111111;
   font-family: "Nunito";
+}
+.custom-bold-body {
+  font-size: 14px;
+  color: #2f5c75;
+  font-weight: 700;
+  font-family: "Nunito";
+}
+
+.custom-light-body {
+  font-size: 13px;
+  color: #2f5c75;
+}
+
+.intext-link {
+  font-size: 13px;
+  color: #80a6ba;
+  text-decoration: none;
 }
