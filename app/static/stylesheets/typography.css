@@ -1,0 +1,19 @@
+.custom-bold-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2f5c75;
+  font-family: "Century Gothic";
+}
+
+.custom-bold-subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #80a6ba;
+  font-family: "Century Gothic";
+}
+
+.custom-body {
+  font-size: 14px;
+  color: #111111;
+  font-family: "Nunito";
+}
