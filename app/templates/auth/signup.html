@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+<!-- import login for -->
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- start of content block -->
+{% block content %}
+<div class="container sign-container">
+  <div class="card shadow signin-form-card">
+    <div class="card-body mx-4">
+      <p class="custom-bold-title text-center">Create new account</p>
+      <form method="POST" class="sign-form">
+        {{form.csrf_token()}}
+        <div class="sign-form-row">
+          <!-- first name input -->
+          <div class="mx-1">
+            {{wtf.form_field(form.first_name, class='form-control
+            form-control-sm custom-input mr-1', placeholder ='John')}}
+          </div>
+
+          <div class="mx-1">
+            <!-- last name input  -->
+            {{wtf.form_field(form.last_name, class='form-control form-control-sm
+            custom-input ', placeholder ='Doe')}}
+          </div>
+        </div>
+        <!-- email input -->
+        {{wtf.form_field(form.email, class='form-control form-control-sm
+        custom-input', placeholder ='johndoe@example.com')}}
+
+        <!-- password input  -->
+        {{wtf.form_field(form.password, class='form-control form-control-sm
+        custom-input', placeholder ='At least 8 character')}}
+        <!-- password confirmation input -->
+        {{wtf.form_field(form.password2, class='form-control form-control-sm
+        custom-input', placeholder ='johndoe@example.com')}}
+
+        <div class="sign-form-button">
+          <button type="submit" class="register-button">Create account</button>
+        </div>
+      </form>
+      <p class="custom-light-body text-center mt-2">
+        If you already have an account
+        <span><a href="/login" class="intext-link">click here</a></span> to sign
+        in
+      </p>
+    </div>
+  </div>
+</div>
+<!-- end of content block -->
+{% endblock %}
