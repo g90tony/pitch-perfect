@@ -11,3 +11,7 @@
   justify-content: space-around;
   margin: auto;
 }
+
+.filter-card {
+  border-radius: 20px;
+}
