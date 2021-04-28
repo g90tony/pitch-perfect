@@ -15,8 +15,7 @@ class Pitch(db.Model):
     up_votes = db.Column(db.Integer)
     down_votes = db.Column(db.Integer)
 
-    def __init__(self,id,body,category_id,user_id,up_votes,down_votes, ):
-        self.id = id
+    def __init__(self,body,category_id,user_id,up_votes,down_votes ):
         self.body = body
         self.category_id = category_id
         self.user_id = user_id
@@ -72,8 +71,8 @@ class User(UserMixin, db.Model):
     pitches = db.relationship('Pitch', backref='pitches', lazy='dynamic')
     
     
-    def __init__(self, id, username,user_email,bio,avatar,hash_pass):
-        self.id = id
+    def __init__(self, username,user_email,bio,avatar,hash_pass):
+
         self.first_name = first_name
         self.last_name = last_name
         self.user_email = user_email
@@ -137,8 +136,7 @@ class Comment(db.Model):
     response_id = db.Column(db.Integer)
     pitch_id = db.Column(db.Integer)
     
-def __init__(self, id,user_id,comment,response_id, pitch_id):
-    self.id = id
+def __init__(self, user_id,comment,response_id, pitch_id):
     self.user_id = user_id
     self.pitch_id = pitch_id
     self.comment = comment
