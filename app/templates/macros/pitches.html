@@ -1,0 +1,60 @@
+{% macro listPitches(pitch_list) %}
+
+<!-- Start of for block -->
+{% for item in pitch_list %}
+
+<div class="media">
+  <img src="{{ite.avatar]]" class="mr-3 rounded-circle" alt="..." />
+  <div class="media-body">
+    <div class="review-header">
+      <p class="custom-bold-body">{{item.username}}</p>
+      <p class="custom-sub-body">{{item.created_on}}</p>
+    </div>
+    <div class="review-subheader">
+      <p class="custom-sub-body">{{item.category}}</p>
+    </div>
+    <div class="review-body mx-3">
+      <p class="custom-body">{{item.body}}</p>
+    </div>
+    <div class="review-actions mx-3">
+      <button class="review-action-button">
+        <i>({{item.up_votes}})</i>
+      </button>
+
+      <button class="review-action-button">
+        <i>({{item.down_votes}})</i>
+      </button>
+
+      <button
+        class="review-action-button"
+        data-toggle="collapse"
+        href="#comments_list"
+        role="button"
+        aria-expanded="false"
+        aria-controls="comments_list"
+      >
+        <i>({{item.comments}})</i>
+      </button>
+      <div class="collapse" id="collapseExample">
+        <ul class="list-group">
+          <li class="list-group-item">
+            {% for comment in item.comments %}
+            <div class="media m-2">
+              <div class="media-body">
+                <p class="custom-body-bold">{{comment.username}}</p>
+                <p class="custom-sub-body">{{comment.comment}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+<!-- end of for block -->
+
+{% endmacro %}
+<!-- end of macro -->
