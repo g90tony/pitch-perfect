@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from . import main
-from .forms import BioUpdateForm, CategoriesFilterForm
-from ..db import db
+from .forms import BioUpdateForm, PitchForm
+from .. import db
 from ..models import Category, Pitch
 from flask_login import login_required, current_user
 
