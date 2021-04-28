@@ -129,3 +129,66 @@ class Category(db.Model):
         
         return categories
     
+class Comment(db.Model):
+    
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer)
+    comment = db.Column(db.String)
+    response_id = db.Column(db.Integer)
+    pitch_id = db.Column(db.Integer)
+    
+def __init__(self, id,user_id,comment,response_id, pitch_id):
+    self.id = id
+    self.user_id = user_id
+    self.pitch_id = pitch_id
+    self.comment = comment
+    self.responses = response_id
+    
+    
+def add_comment(self):
+    db.session.add(self)
+    db.session.commit()
+    
+def __repr__ (self):
+    return f'User {self.username}'
+
+def get_comments(pitch_id):
+    comments = Comment.query.filter_by(pitch_id = pitch_id).all()
+    
+    comment_results = list()
+    
+    if comments is not None:
+        comment_item = dict()
+        
+        for item in comments:
+            
+            user_details = User.query.filter_by(id = item.user_id).first()
+            
+            comment_item['id'] = item.id
+            comment_item['comment'] = item.comment
+            comment_item['username'] = user_details.username
+            
+            comment_results.append(comment_item)
+            
+    return comment_results
+
+def get_comment_responses(response_id):
+    responses = Comment.query.filter_by(response_id = response_id).all()
+    
+    responses_results = list()
+    
+    if responses is not None:
+        response_item = dict()
+        
+        for item in responses:
+            
+            user_details = User.query.filter_by(id = item.user_id).first()
+            
+            response_item['id'] = item.id
+            response_item['comment'] = item.comment
+            response_item['username'] = user_details.username
+            
+            responses_results.append(comment_item)
+            
+    return responses_results
+            
