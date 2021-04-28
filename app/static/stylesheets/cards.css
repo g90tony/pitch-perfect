@@ -15,3 +15,8 @@
 .filter-card {
   border-radius: 20px;
 }
+
+.user-pitch-card {
+  border-radius: 20px;
+  width: 250px;
+}
