@@ -11,4 +11,4 @@ class BioUpdateForm(FlaskForm):
 class PitchForm(FlaskForm):
     new_pitch = TextAreaField('Enter your pitch here')
     category = SelectField('Select a category', coerce='unicode', validators=[InputRequired])
-    submit_button = SubmitField('save')
+    submit_button = SubmitField('post')
