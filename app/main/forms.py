@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordFields, TextAreaField, EmailField,  SelectField, SubmitField
+from wtforms import StringField, PasswordField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import Required
 
 
@@ -10,5 +10,5 @@ class BioUpdateForm(FlaskForm):
 
 class PitchForm(FlaskForm):
     new_pitch = TextAreaField('Enter your pitch here')
-    category = SelectField('Select a category', coerce='unicode', validators=[InputRequired])
+    category = SelectField('Select a category', coerce='unicode', validators=[Required()])
     submit_button = SubmitField('post')
