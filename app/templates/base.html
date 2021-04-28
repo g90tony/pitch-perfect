@@ -10,24 +10,10 @@
     <title>{{title}}</title>
     {% else %}
     <title>Pitch Perfect</title>
-    <!-- end of if block -->
-
-    <!-- start of content block -->
-    {% block content %}
-
-    <!-- start of if block -->
-    {% if authenticated %}
-
-    <!-- import signed in navbar -->
-    {% include 'signed_navbar.html' %} {% else %}
-    <!-- import unsigned navbar -->
-    {% include 'unsigned_navbar.html' %}
 
     <!-- end of if block -->
     {% endif %}
-
-    <!-- end of content block -->
-    {% endblock %}
+    <!-- start of content block -->
 
     <link
       rel="stylesheet"
@@ -35,8 +21,40 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='stylesheets/layout.css')}}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='stylesheets/index.css')}}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='stylesheets/typography.css')}}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='stylesheets/cards.css')}}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='stylesheets/buttons.css')}}"
+    />
   </head>
   <body>
+    <!-- start of if block -->
+    {% if authenticated %} {% include 'navbars/signed_navbar.html' %} {% else %}
+    {% include 'navbars/unsigned_navbar.html' %}
+
+    <!-- end of if block -->
+    {% endif %} {% block content %} {% endblock %}
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
