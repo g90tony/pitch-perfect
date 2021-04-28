@@ -1,29 +1,39 @@
 <!-- import categories macro -->
 {% import 'macros/categories.html' as macro %}
 
-<div class="card">
-  <div class="card-body my-2">
+<div class="card filter-card shadow">
+  <div class="card-body mt-2">
     <p class="card-title custom-bold-title">Pitch Categories</p>
+    {% if categories %}
+
     <div class="mx-2">{{macro.listCategories(categories)}}</div>
+
+    {% else %}
+
+    <p class="custom-bold-subtitle text-center mb-0">
+      There are no categories to show
+    </p>
+
+    {% endif %}
   </div>
-  <div class="card-body my-2">
+  <div class="card-body mt-2">
     <p class="card-title custom-bold-title">Order By:</p>
     <div class="list-group">
       <a
         href="/sort/newest"
-        class="list-group-item list-group-item-action border-0 m-2"
+        class="list-group-item list-group-item-action custom-body border-0"
       >
         Most Recent
       </a>
       <a
         href="/sort/popular"
-        class="list-group-item list-group-item-action border-0 m-2"
+        class="list-group-item list-group-item-action custom-body border-0"
       >
         Most Popular
       </a>
       <a
         href="/filter/comments"
-        class="list-group-item list-group-item-action border-0 m-2"
+        class="list-group-item list-group-item-action custom-body border-0"
       >
         Most Commented
       </a>
