@@ -40,3 +40,8 @@ def register():
     title = 'Create an account: Pitch Perfect Sign-up'     
     
     return render_template('auth/register.html', registration_form = new_user, title= title)
+
+@auth.route('/logout')
+def logout():
+    logout()
+    return redirect(url_for('main.index'))
