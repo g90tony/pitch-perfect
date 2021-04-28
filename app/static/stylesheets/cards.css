@@ -1,0 +1,13 @@
+.welcome-card {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.welcome-card-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: auto;
+}
