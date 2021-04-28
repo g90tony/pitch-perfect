@@ -12,3 +12,8 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordFields('Confrim new password', validators = [Required()])
     submit = SubmitField('Create account')
 
+class LoginForm(FlaskForm):
+    email = EmailField('Enter email address', validators = [(Required(), Email())])
+    password = PasswordFields('Enter your password', validators = [Required()])
+    remember_user =     BooleanField('Remember me')
+    submit = SubmitField('Login')
