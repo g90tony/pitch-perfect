@@ -2,12 +2,12 @@ from . import db
 from . import login_manager
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask login import UserMixin
+from flask_login import UserMixin
 
-class Pitch(db.model):
+class Pitch(db.Model):
     __tablename__ = 'pitches'
     
-    id = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key= True)
     body = db.Column(db.String)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -30,7 +30,7 @@ class Pitch(db.model):
     @classmethod
     def get_pitches(cls, category = None):
         if category is not None:
-            pitches = Pitch.query.filter_by(category = category)limit(20)
+            pitches = Pitch.query.filter_by(category = category).limit(20)
         
         else :
             pitches = Pitch.query.limit(20)
@@ -45,7 +45,7 @@ class Pitch(db.model):
                 
                 pitch_result_item['id'] = pitch.id 
                 pitch_result_item['body'] = pitch.body 
-                pitch_result_item['created_on'] pitch.created_on
+                pitch_result_item['created_on'] = pitch.created_on
                 pitch_result_item['username'] = user_record.username
                 pitch_result_item['avatar'] = user_record.avatar
                 pitch_result_item['category'] = category_record.title
@@ -69,7 +69,7 @@ class User(UserMixin, db.Model):
     avatar = db.Column(db.String)
     hash_pass = db.Column(db.String(255))
     date_joined = db.Column(db.Integer,  default=datetime.utcnow())
-    pitches = db.relationships('Pitch', backref='pitches', lazy='dynamic')
+    pitches = db.relationship('Pitch', backref='pitches', lazy='dynamic')
     
     
     def __init__(self, id, username,user_email,bio,avatar,hash_pass):
@@ -91,7 +91,7 @@ class User(UserMixin, db.Model):
     def __repr__ (self):
         return f'User {self.username}'
         
-    @login_manger.user_loader
+    @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
     
@@ -113,7 +113,7 @@ class Category(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
-    pitches = db.relationships('Pitch', backref='pitches', lazy='dynamic')
+    pitches = db.relationship('Pitch', backref='pitches_relation', lazy='dynamic')
     
     def add_category(self):
         db.session.add(self)
