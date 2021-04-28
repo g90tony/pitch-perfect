@@ -1,6 +1,6 @@
 .landing-container {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 0.4fr;
+  grid-template-columns: 0.4fr 1fr 0.3fr;
   grid-template-rows: 1fr;
   grid-template-areas: "left center right";
 }
@@ -15,4 +15,16 @@
 
 .right-column {
   grid-area: right;
+}
+
+.sign-container {
+  display: flex;
+  flex-flow: row;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-container .card {
+  border-radius: 20px;
 }
