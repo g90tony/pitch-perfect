@@ -59,3 +59,51 @@ class Pitch(db.model):
      
         
         
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+    
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String)
+    user_email = db.Column(db.String)
+    bio = db.Column(db.String)
+    avatar = db.Column(db.String)
+    hash_pass = db.Column(db.String(255))
+    date_joined = db.Column(db.Integer,  default=datetime.utcnow())
+    pitches = db.relationships('Pitch', backref='pitches', lazy='dynamic')
+    
+    
+    def __init__(self, id, username,user_email,bio,avatar,hash_pass):
+        self.id = id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.user_email = user_email
+        self.bio = bio
+        self.avatar = avatar
+        self.hash_pass = hash_pass
+        self.date_joined = date_joined
+        self.pitches = list()
+    
+    def create_new_user(self):
+        db.session.db(self)
+        db.session.commit()
+        
+        
+    def __repr__ (self):
+        return f'User {self.username}'
+        
+    @login_manger.user_loader
+    def load_user(user_id):
+        return User.query.get(user_id)
+    
+    @property
+    def password(self):
+        raise AttributeError('You can not read the password attribute')
+    
+    @password.setter
+    def password(self, password):
+        self.hash_pass = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.hash_pass, password)
+    
+    
