@@ -1,0 +1,16 @@
+{% macro listCategories(category_list) %}
+
+<!-- Start of for block -->
+{% for item in category_list %}
+<a
+  href="/filter/{{item.id}}"
+  class="list-group-item list-group-item-action border-0 m-2"
+>
+  {{item.title}}
+</a>
+
+{% endfor %}
+<!-- end of for block -->
+
+{% endmacro %}
+<!-- end of macro -->
