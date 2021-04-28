@@ -10,7 +10,7 @@ def index():
     title = 'Pitch Perfect: Perfect your pitches'
     
     pitches = Pitch.get_pitches()
-    if user_is_authenticated():
+    if current_user.is_authenticated:
         authenticated = True
     else:
         authenticated = False
