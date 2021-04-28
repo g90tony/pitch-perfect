@@ -107,3 +107,25 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.hash_pass, password)
     
     
+class Category(db.Model):
+    
+    __tablename__ = 'categories'
+    
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String)
+    pitches = db.relationships('Pitch', backref='pitches', lazy='dynamic')
+    
+    def add_category(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    def __repr__ (self):
+        return f'Category {self.title}'
+        
+    
+    @classmethod
+    def get_categories(cls):
+        categories: Category.query.all()
+        
+        return categories
+    
