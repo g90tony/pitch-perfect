@@ -1,0 +1,32 @@
+<!-- import categories macro -->
+{% import 'categories.html' as macro %}
+
+<div class="card">
+  <div class="card-body my-2">
+    <p class="card-title custom-bold-title">Pitch Categories</p>
+    <div class="mx-2">{{macro.listCategories(categories)}}</div>
+  </div>
+  <div class="card-body my-2">
+    <p class="card-title custom-bold-title">Order By:</p>
+    <div class="list-group">
+      <a
+        href="/sort/newest"
+        class="list-group-item list-group-item-action border-0 m-2"
+      >
+        Most Recent
+      </a>
+      <a
+        href="/sort/popular"
+        class="list-group-item list-group-item-action border-0 m-2"
+      >
+        Most Popular
+      </a>
+      <a
+        href="/filter/comments"
+        class="list-group-item list-group-item-action border-0 m-2"
+      >
+        Most Commented
+      </a>
+    </div>
+  </div>
+</div>
