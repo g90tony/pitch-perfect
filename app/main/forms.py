@@ -5,8 +5,8 @@ from wtforms.validators import Required
 
 
 class BioUpdateForm(FlaskForm):
-    bioLabel = Markup(" <p class='custom-bold-body mb-0'>Enter first name</p>") 
-    new_biography = TextAreaField('Update your bios')
+    bioLabel = Markup(" <p class='custom-bold-body mb-0'>Update your bios</p>") 
+    new_biography = TextAreaField(bioLabel)
 
 
 
