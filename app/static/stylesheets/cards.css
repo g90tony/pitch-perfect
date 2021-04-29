@@ -53,6 +53,14 @@
   border: 0;
 }
 
+.pitch-comment-card {
+  width: 90%;
+  margin: 10px auto;
+  padding: 30px;
+  border-radius: 20px;
+  justify-content: center;
+}
+
 .user-info-card {
   border-radius: 20px;
   width: 250px;
