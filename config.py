@@ -18,6 +18,10 @@ class Config:
     MAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
     
+    # Markup converter
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+
     @staticmethod
     def init_app(app):
         pass
