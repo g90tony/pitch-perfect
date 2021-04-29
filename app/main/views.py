@@ -1,9 +1,11 @@
+from datetime import datetime
 from flask import render_template, request, redirect, url_for, flash
 from . import main
 from .forms import BioUpdateForm, PitchForm, UpdatePasswordForm, NewCommentForm
 from .. import db, photos
 from ..models import User, Category, Pitch, Comment
 from flask_login import login_required, current_user
+
 
 @main.route('/', methods=['POST', 'GET'])
 def index():
@@ -58,6 +60,8 @@ def comments(pitch_id):
     category = Category.query.filter_by(id = pitch.category_id).first()
     user = User.query.filter_by(id = pitch.user_id).first()
     
+    formatted_date = pitch.created_on.strftime("%a, %d %B, %y")
+    
     comment_form = NewCommentForm()
     
     if comment_form.validate_on_submit():
@@ -88,7 +92,7 @@ def comments(pitch_id):
     
     title = f"Comments for {user.username}'s pitch"
     
-    return render_template('comment-view.html', comments = comment_results, comment_count = comment_count, pitch = pitch , user= user, category = category, authenticated = True, title=title, form = comment_form)    
+    return render_template('comment-view.html', comments = comment_results, comment_count = comment_count, pitch = pitch , user= user, category = category, authenticated = True, title=title, form = comment_form, formatted_date = formatted_date)    
     
 
 

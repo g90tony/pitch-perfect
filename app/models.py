@@ -47,7 +47,7 @@ class Pitch(db.Model):
                 
                 pitch_result_item['id'] = pitch.id 
                 pitch_result_item['body'] = pitch.body 
-                pitch_result_item['created_on'] = pitch.created_on
+                pitch_result_item['created_on'] = pitch.created_on.strftime("%a, %d %B, %y")
                 pitch_result_item['username'] = user_record.username
                 pitch_result_item['avatar'] = user_record.avatar
                 pitch_result_item['category'] = category_record.title
