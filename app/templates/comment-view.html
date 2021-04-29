@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!-- import wtforms -->
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- import pitches macro -->
+{% import 'macros/comments.html' as macro %}
+<!-- start of content block -->
+{% block content %}
+
+<div class="media card mt-5 w-75 shadow mx-auto pitch-comment-card">
+  <div class="media-body mx-auto">
+    <div class="pitch-card-header">
+      <div class="row d-flex align-items-center">
+        <img
+          src="{{url_for('static',filename=user.avatar)}}"
+          class="mr-1 ml-2 my-auto rounded-circle small-avatar"
+          alt="..."
+        />
+        <div class="col">
+          <p class="custom-bold-title my-0">{{user.username}}</p>
+          <p class="custom-sub-body my-0">{{category.title}}</p>
+        </div>
+      </div>
+      <p class="custom-sub-body">{{pitch.created_on}}</p>
+    </div>
+    <div class="pitch-card-body mx-4 d-flex justify-content-center">
+      <p class="custom-body">{{pitch.body}}</p>
+    </div>
+    <ul class="list-group">
+      <!-- start of if block -->
+
+      {% if comments %} {{macro.list_comments(comments)}} {% else %}
+
+      <p class="custom-bold-subtitle text-center">
+        There are no comments. Be the first to post your comment
+      </p>
+
+      {% endif %}
+    </ul>
+
+    <form method="POST">
+      {{form.csrf_token()}}
+      <!-- comment input -->
+      {{wtf.form_field(form.new_comment, class='form-control form-control-sm
+      custom-input', placeholder ='type your pitch here...', rows ='4')}}
+      <div class="d-flex flex-row justify-content-end">
+        <button type="submit" class="login-button">post</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
