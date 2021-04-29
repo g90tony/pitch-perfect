@@ -34,6 +34,24 @@ def index():
     
     return render_template('index.html', title=title, pitches= pitches, authenticated=authenticated, form = new_pitch, categories = categories, user=current_user)
 
+@main.route('/filter/<int:category_id>')
+def filter(category_id):
+    if current_user.is_authenticated:
+        authenticated = True
+    else:
+        authenticated = False
+    
+    categories = Category.query.all()
+    selected_category = Category.query.filter_by(id = category_id).first()
+    new_pitch = PitchForm()
+    pitches = Pitch.get_pitches(category_id)
+    
+    title = f'{selected_category.title} Pitches'
+    
+    return render_template('index.html', title=title, pitches= pitches, authenticated=authenticated, form = new_pitch, categories = categories, user=current_user)    
+
+
+
 
 
 @main.route('/profile', methods=['GET', 'POST'])
