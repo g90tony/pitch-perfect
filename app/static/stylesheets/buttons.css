@@ -7,9 +7,12 @@
   font-weight: 700;
   width: 100px;
   height: 24px;
+  text-decoration: none !important;
 }
 
 .register-button:hover {
+  text-decoration: none !important;
+  color: #ffffff;
   background-color: #14425a;
   transition: 500ms ease-in;
 }
@@ -23,9 +26,12 @@
   font-weight: 700;
   width: 100px;
   height: 24px;
+  text-decoration: none !important;
 }
 
 .login-button:hover {
+  text-decoration: none !important;
+  color: #ffffff;
   background-color: #375c6b;
   transition: 500ms ease-in;
 }
