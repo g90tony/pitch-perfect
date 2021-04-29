@@ -67,23 +67,11 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String)
     avatar = db.Column(db.String)
     hash_pass = db.Column(db.String(255))
-    date_joined = db.Column(db.Integer,  default=datetime.utcnow())
     pitches = db.relationship('Pitch', backref='pitches', lazy='dynamic')
     
     
-    def __init__(self, username,user_email,bio,avatar,hash_pass):
-
-        self.first_name = first_name
-        self.last_name = last_name
-        self.user_email = user_email
-        self.bio = bio
-        self.avatar = avatar
-        self.hash_pass = hash_pass
-        self.date_joined = date_joined
-        self.pitches = list()
-    
     def create_new_user(self):
-        db.session.db(self)
+        db.session.add(self)
         db.session.commit()
         
         
