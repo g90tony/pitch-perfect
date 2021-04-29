@@ -14,6 +14,7 @@ class Pitch(db.Model):
     created_on = db.Column(db.Time, default=datetime.utcnow())
     up_votes = db.Column(db.Integer)
     down_votes = db.Column(db.Integer)
+    comments =  db.relationship('Comment', backref='comments', lazy='dynamic')
 
     def __init__(self,body,category_id,user_id,up_votes,down_votes ):
         self.body = body
@@ -29,7 +30,7 @@ class Pitch(db.Model):
     @classmethod
     def get_pitches(cls, category = None):
         if category is not None:
-            pitches = Pitch.query.filter_by(category = category).limit(20)
+            pitches = Pitch.query.filter_by(category_id = category).all()
         
         else :
             pitches = Pitch.query.limit(20)
@@ -42,7 +43,7 @@ class Pitch(db.Model):
                 
                 category_record = Category.query.filter_by(id = pitch.category_id).first()
                 user_record = User.query.filter_by(id = pitch.user_id).first()
-                comments = Comment.query.filter_by(pitch_id = pitch.id).all()
+             
                 
                 pitch_result_item['id'] = pitch.id 
                 pitch_result_item['body'] = pitch.body 
@@ -52,8 +53,7 @@ class Pitch(db.Model):
                 pitch_result_item['category'] = category_record.title
                 pitch_result_item['up_votes'] = pitch.up_votes 
                 pitch_result_item['down_votes'] = pitch.down_votes 
-                pitch_result_item['comments'] = comments
-                pitch_result_item['comment_count'] = len(comments)
+            
                 
                 pitch_results.append(pitch_result_item)
 
@@ -126,60 +126,54 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer)
     comment = db.Column(db.String)
-    response_id = db.Column(db.Integer)
-    pitch_id = db.Column(db.Integer)
-    
-def __init__(self, user_id,comment,response_id, pitch_id):
-    self.user_id = user_id
-    self.pitch_id = pitch_id
-    self.comment = comment
-    self.responses = response_id
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
     
     
-def add_comment(self):
-    db.session.add(self)
-    db.session.commit()
     
-def __repr__ (self):
-    return f'User {self.username}'
-
-def get_comments(pitch_id):
-    comments = Comment.query.filter_by(pitch_id = pitch_id).all()
-    
-    comment_results = list()
-    
-    if comments is not None:
-        comment_item = dict()
+    def add_comment(self):
+        db.session.add(self)
+        db.session.commit()
         
-        for item in comments:
-            
-            user_details = User.query.filter_by(id = item.user_id).first()
-            
-            comment_item['id'] = item.id
-            comment_item['comment'] = item.comment
-            comment_item['username'] = user_details.username
-            
-            comment_results.append(comment_item)
-            
-    return comment_results
+    def __repr__ (self):
+        return f'User {self.username}'
 
-def get_comment_responses(response_id):
-    responses = Comment.query.filter_by(response_id = response_id).all()
-    
-    responses_results = list()
-    
-    if responses is not None:
-        response_item = dict()
+    def get_comments(pitch_id):
+        comments = Comment.query.filter_by(pitch_id = pitch_id).all()
         
-        for item in responses:
+        comment_results = list()
+        
+        if comments is not None:
+            comment_item = dict()
             
-            user_details = User.query.filter_by(id = item.user_id).first()
+            for item in comments:
+                
+                user_details = User.query.filter_by(id = item.user_id).first()
+                
+                comment_item['id'] = item.id
+                comment_item['comment'] = item.comment
+                comment_item['username'] = user_details.username
+                
+                comment_results.append(comment_item)
+                
+        return comment_results
+
+    def get_comment_responses(response_id):
+        responses = Comment.query.filter_by(response_id = response_id).all()
+        
+        responses_results = list()
+        
+        if responses is not None:
+            response_item = dict()
             
-            response_item['id'] = item.id
-            response_item['comment'] = item.comment
-            response_item['username'] = user_details.username
-            
-            responses_results.append(comment_item)
-            
-    return responses_results
-            
+            for item in responses:
+                
+                user_details = User.query.filter_by(id = item.user_id).first()
+                
+                response_item['id'] = item.id
+                response_item['comment'] = item.comment
+                response_item['username'] = user_details.username
+                
+                responses_results.append(comment_item)
+                
+        return responses_results
+                
