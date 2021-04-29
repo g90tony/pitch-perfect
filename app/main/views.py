@@ -9,7 +9,7 @@ from flask_login import login_required, current_user
 def index():
     title = 'Pitch Perfect: Perfect your pitches'
     new_pitch = PitchForm()
-        if current_user.is_authenticated:
+    if current_user.is_authenticated:
         authenticated = True
     else:
         authenticated = False
@@ -74,8 +74,8 @@ def profile():
             pitch_result.append(pitch_result_item)
     
     title = f"{userdata.first_name} {userdata.last_name}'s Profile"
-    
-    return render_template('profile.html', pitches = pitch_results, userdata = userdata)
-    return render_template('profile.html', form =update_password, bio_form =update_bio )
+    pitches_count = len(pitch_results)
+
+    return render_template('profile.html', form =update_password, bio_form =update_bio, pitches = pitch_results, userdata = userdata, pitches_count = pitches_count )
     
     
