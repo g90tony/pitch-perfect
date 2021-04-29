@@ -51,7 +51,45 @@ def filter(category_id):
     return render_template('index.html', title=title, pitches= pitches, authenticated=authenticated, form = new_pitch, categories = categories, user=current_user)    
 
 
+@main.route('/pitch/<int:pitch_id>', methods=['POST','GET'])
+@login_required
+def comments(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    category = Category.query.filter_by(id = pitch.category_id).first()
+    user = User.query.filter_by(id = pitch.user_id).first()
+    
+    comment_form = NewCommentForm()
+    
+    if comment_form.validate_on_submit():
+        new_comment = comment_form.new_comment.data
+        
+        comment = Comment(user_id= user.id, comment= new_comment, pitch_id= pitch.id)
+        comment.add_comment()
+        db.session.commit()
+        
+        return redirect( url_for('main.comments', pitch_id = pitch_id))
 
+    
+    comments = Comment.query.filter_by(pitch_id = pitch.id).all()
+    
+    comment_results = list()
+    
+    for comment in comments:
+        user = User.query.filter_by(id = comment.user_id).first()
+        temp = dict()
+        temp['username'] = user.username
+        temp['comment'] = comment.comment
+        
+        comment_results.append(temp)
+        
+        
+        
+    comment_count = len(comments)
+    
+    title = f"Comments for {user.username}'s pitch"
+    
+    return render_template('comment-view.html', comments = comment_results, comment_count = comment_count, pitch = pitch , user= user, category = category, authenticated = True, title=title, form = comment_form)    
+    
 
 
 @main.route('/profile', methods=['GET', 'POST'])
