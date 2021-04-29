@@ -1,36 +1,36 @@
 .custom-bold-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: #2f5c75;
   font-family: "Century Gothic";
 }
 
 .custom-bold-subtitle {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #80a6ba;
   font-family: "Century Gothic";
 }
 
 .custom-body {
-  font-size: 14px;
+  font-size: 13px;
   color: #111111;
   font-family: "Nunito";
 }
 .custom-bold-body {
-  font-size: 14px;
+  font-size: 13px;
   color: #2f5c75;
   font-weight: 700;
   font-family: "Nunito";
 }
 
 .custom-light-body {
-  font-size: 13px;
+  font-size: 12px;
   color: #2f5c75;
 }
 
 .intext-link {
-  font-size: 13px;
+  font-size: 11px;
   color: #80a6ba;
   text-decoration: none;
 }
