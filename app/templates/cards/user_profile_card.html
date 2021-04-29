@@ -2,37 +2,13 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 <div class="card filter-card shadow">
-  <div class="card-body mx-auto">
-    <p class="custom-bold-title text-center">Change password</p>
-    <form method="POST" class="profile-form">
-      {{form.csrf_token()}}
-      <!-- email input -->
-      {{wtf.form_field(form.old_password, class='form-control form-control-sm
-      custom-input', placeholder ='type od password here')}}
-
-      <!-- password input  -->
-      {{wtf.form_field(form.new_password, class='form-control form-control-sm
-      custom-input', placeholder ='At least 8 character')}}
-
-      <!-- password confirmation -->
-      {{wtf.form_field(form.new_password2, class='form-control form-control-sm
-      custom-input', placeholder ='At least 8 characters')}}
-
-      <div class="profile-form-button">
-        <button type="submit" class="login-button">save</button>
-      </div>
-    </form>
-  </div>
-
-  <hr class="mx-auto w-75 card-divider" />
-
-  <div class="card-body mx-auto">
-    <p class="custom-bold-title text-center">Update Biography</p>
+  <div class="card-body mx-0">
+    <!-- <p class="custom-bold-title text-center">Update Biography</p> -->
     <form method="POST" class="">
       {{form.csrf_token()}}
       <!-- email input -->
       {{wtf.form_field(bio_form.new_biography, class='form-control
-      form-control-sm custom-input', placeholder ='write something...',
+      form-control-sm custom-input w-100', placeholder ='write something...',
       rows=5)}}
 
       <div class="profile-form-button">
