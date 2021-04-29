@@ -5,15 +5,7 @@
 {% block content %}
 
 <div class="container-fluid mt-3 landing-container">
-  <div class="left-column">
-    <!-- start of if block -->
-    {% if authenticated %} {% include 'cards/pitch_item_card.html' %}
-
-    <!-- start of else block -->
-    {% else %} {% include 'cards/welcome_card.html' %}
-    <!-- end of if block -->
-    {% endif %}
-  </div>
+  <div class="left-column">{% include 'cards/user_info_card.html' %}</div>
 
   <div class="center-column">
     <!-- start of if block -->
@@ -23,15 +15,10 @@
     {{marco.list_pitches(pitches)}}
 
     <!-- check if user if user is authenticated -->
-    {% elif authenticated %}
+    {% else %}
 
     <p class="custom-bold-subtitle text-center">
       There are no pitches. Be the first to post your pitch
-    </p>
-
-    {% else %}
-    <p class="custom-bold-subtitle text-center">
-      There are no pitches. Create an account or login to post a pitch
     </p>
 
     <!-- end of if block -->
@@ -40,7 +27,7 @@
 
   <div class="right-column">
     <!-- start of if block -->
-    {% include 'cards/filter_card.html' %}
+    {% include 'cards/user_profile_card.html' %}
   </div>
 </div>
 <!-- end of content block -->

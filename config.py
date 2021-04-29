@@ -6,7 +6,7 @@ class Config:
     
     # SQLALCHEMY KEYS
     SQLALCHEMY_DATABASE_URI =  'postgresql+psycopg2://caleb:admin@localhost/pitch_perfect'
-    SQLALCHEMY_TRACK_NOTIFICATIONS = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     
     # DISPLAY PICTURE UPLOAD DESTINATION
     UPLOADED_PHOTOS_DEST = 'app/static/images'
