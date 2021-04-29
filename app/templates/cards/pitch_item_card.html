@@ -9,6 +9,7 @@
       class="large-avatar rounded-circle img-fluid mb-3"
     />
     <p class="card-text text-center custom-bold-subtitle">{{user.username}}</p>
+    <a href="/profile" class="login-button text-center mx-auto">profile</a>
   </div>
 
   <hr class="mx-auto w-75 card-divider" />
@@ -18,7 +19,7 @@
       {{form.csrf_token()}}
       <!-- email input -->
       {{wtf.form_field(form.new_pitch, class='form-control form-control-sm
-      custom-input', placeholder ='johndoe@example.com')}}
+      custom-input', placeholder ='type your pitch here...', rows ='5')}}
 
       <!-- password input  -->
       {{wtf.form_field(form.category, class='form-control form-control-sm
