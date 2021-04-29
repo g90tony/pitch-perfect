@@ -1,0 +1,20 @@
+{% macro list_comments(comments) %}
+
+<!-- Start of for block -->
+{% for item in comments %}
+
+<li class="list-group-item my-0 border-0">
+  <div class="media my-0 mx-5">
+    <div class="media-body my-0 border p-3 rounded-lg shadow">
+      <p class="custom-bold-subtitle my-0">{{item.username}}</p>
+      <p class="custom-body my-1 mx-5">{{item.comment}}</p>
+    </div>
+  </div>
+  <!-- <hr class="mx-auto w-50 card-divider" /> -->
+</li>
+
+{% endfor %}
+<!-- end of for block -->
+
+{% endmacro %}
+<!-- end of macro -->
