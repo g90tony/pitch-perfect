@@ -1,3 +1,7 @@
+.card-divider {
+  border: solid 0.5px #2f5c75;
+}
+
 .welcome-card {
   display: flex;
   justify-content: center;
@@ -19,4 +23,15 @@
 .user-pitch-card {
   border-radius: 20px;
   width: 250px;
+}
+
+.user-info-card {
+  border-radius: 20px;
+  width: 250px;
+}
+
+.user-info {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
