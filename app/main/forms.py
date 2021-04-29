@@ -14,7 +14,7 @@ class PitchForm(FlaskForm):
     pitchLabel = Markup(" <p class='custom-bold-body mb-0'>Post new pitch</p>")
     categoryLabel = Markup(" <p class='custom-bold-body mb-0'>Post new pitch</p>")
     new_pitch = TextAreaField(pitchLabel)
-    category = SelectField(categoryLabel, coerce='unicode', validators=[Required()])
+    category = SelectField(categoryLabel, choices=[], coerce = int, validators=[Required()])
 
 class UpdatePasswordForm(FlaskForm):
     old_passwordLabel = Markup(" <p class='custom-bold-body mb-0'>Enter new password</p>")
