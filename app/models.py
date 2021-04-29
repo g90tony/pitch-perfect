@@ -11,7 +11,7 @@ class Pitch(db.Model):
     body = db.Column(db.String)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    created_on = db.Column(db.Integer, default=datetime.utcnow())
+    created_on = db.Column(db.Time, default=datetime.utcnow())
     up_votes = db.Column(db.Integer)
     down_votes = db.Column(db.Integer)
 
@@ -38,9 +38,11 @@ class Pitch(db.Model):
         
         if pitches is not None:
             for pitch in pitches:
-                category_record = Category.query.filter_by(pitch.category_id).first()
-                user_record = User.query.filter_by(pitch.user_id).first()
-                comments = Comment.get_comments(pitch.id)
+                pitch_result_item = dict()
+                
+                category_record = Category.query.filter_by(id = pitch.category_id).first()
+                user_record = User.query.filter_by(id = pitch.user_id).first()
+                comments = Comment.query.filter_by(pitch_id = pitch.id).all()
                 
                 pitch_result_item['id'] = pitch.id 
                 pitch_result_item['body'] = pitch.body 
@@ -51,8 +53,9 @@ class Pitch(db.Model):
                 pitch_result_item['up_votes'] = pitch.up_votes 
                 pitch_result_item['down_votes'] = pitch.down_votes 
                 pitch_result_item['comments'] = comments
+                pitch_result_item['comment_count'] = len(comments)
                 
-                pitch_result.append(pitch_result_item)
+                pitch_results.append(pitch_result_item)
 
             return pitch_results
      
