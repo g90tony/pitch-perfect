@@ -35,3 +35,10 @@
   background-color: #375c6b;
   transition: 500ms ease-in;
 }
+
+.red-shade {
+  color: #dc143c;
+}
+.primary-shade {
+  color: #2f5c75;
+}
