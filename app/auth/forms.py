@@ -15,7 +15,6 @@ class RegistrationForm(FlaskForm):
     first_name = StringField(first_nameLabel, validators = [(Required())])
     last_name = StringField(last_nameLabel, validators = [Required()])
     email = StringField(emailLabel, validators = [Required(), Email()])
-    avatar = FileField(avatarLabel, validators = [Required()])
     password = PasswordField(passwordLabel, validators = [Required()])
     password2 = PasswordField(password2Label, validators = [Required()])
 

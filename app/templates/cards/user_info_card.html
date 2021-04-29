@@ -4,30 +4,37 @@
 <div class="card user-info-card shadow">
   <div class="card-body d-flex justify-content-center flex-column mt-2">
     <img
-      src="{{userdata.avatar}}"
+      src="{{url_for('static',filename=user.avatar)}}"
       alt=""
       class="large-avatar rounded-circle img-fluid mb-3"
     />
-    <p class="card-text text-center custom-bold-subtitle">
-      {{userdata.first_name}} {{userdata.last_name}}
-    </p>
-    <p class="card-text text-center custom-body">{{userdata.bio}}</p>
+    <p class="card-text text-center custom-bold-subtitle">{{user.username}}</p>
+    <div class="mx-3 user-info">
+      <p class="custom-bold-body">Email</p>
+      <p class="custom-body">{{user.user_email}}</p>
+    </div>
+    <div class="mx-3">
+      <p class="custom-bold-body text-center">Bio</p>
+      <p class="card-text text-center custom-body border-light">{{user.bio}}</p>
+    </div>
   </div>
-
   <hr class="mx-auto w-75 card-divider" />
 
-  <div class="card-body my-2">
-    <div class="user-info">
-      <p class="custom-bold-body">Email</p>
-      <p class="custom-body">{{userdata.email}}</p>
-    </div>
-    <div class="user-info">
-      <p class="custom-bold-body">Joined</p>
-      <p class="custom-body">{{userdata.joined}}</p>
-    </div>
-    <div class="user-info">
-      <p class="custom-bold-body">Pitches</p>
-      <p class="custom-body">{{pitches_count}}</p>
-    </div>
+  <div class="mx-4 my-0">
+    <form method="POST" class="my-3">
+      <label class="custom-bold-body text-center mb-0" for=""
+        >Update Avatar</label
+      >
+      <input
+        type="file"
+        class="form-control-file form-control form-control-sm custom-input w-100 mb-2"
+        name="photos"
+        accept="image/*"
+      />
+
+      <div class="profile-form-button">
+        <button type="submit" class="login-button">save</button>
+      </div>
+    </form>
   </div>
 </div>
