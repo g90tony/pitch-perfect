@@ -1,39 +1,55 @@
-{% macro listPitches(pitch_list) %}
+{% macro list_pitches(pitch_list) %}
 
 <!-- Start of for block -->
 {% for item in pitch_list %}
 
-<div class="media">
-  <img src="{{item.avatar}}" class="mr-3 rounded-circle" alt="..." />
+<div class="media card shadow mx-auto pitch-card">
   <div class="media-body">
-    <div class="review-header">
-      <p class="custom-bold-body">{{item.username}}</p>
+    <div class="pitch-card-header">
+      <div class="row d-flex align-items-center">
+        <img
+          src="{{url_for('static',filename=item.avatar)}}"
+          class="mr-1 ml-2 my-auto rounded-circle small-avatar"
+          alt="..."
+        />
+        <div class="col">
+          <p class="custom-bold-title my-0">{{item.username}}</p>
+          <p class="custom-sub-body my-0">{{item.category}}</p>
+        </div>
+      </div>
       <p class="custom-sub-body">{{item.created_on}}</p>
     </div>
-    <div class="review-subheader">
-      <p class="custom-sub-body">{{item.category}}</p>
-    </div>
-    <div class="review-body mx-3">
+    <div class="pitch-card-body mx-4 d-flex justify-content-center">
       <p class="custom-body">{{item.body}}</p>
     </div>
-    <div class="review-actions mx-3">
-      <button class="review-action-button">
-        <i>({{item.up_votes}})</i>
+    <div class="pitch-card-actions mx-3">
+      <button class="pitch-card-action-button">
+        <i class="fas fa-heart red-shade"
+          ><span class="custom-bold-body my-auto"> ({{item.up_votes}})</span></i
+        >
       </button>
 
-      <button class="review-action-button">
-        <i>({{item.down_votes}})</i>
+      <button class="pitch-card-action-button">
+        <i class="fas fa-heart-broken red-shade"
+          ><span class="custom-bold-body my-auto">
+            ({{item.down_votes}})</span
+          ></i
+        >
       </button>
 
       <button
-        class="review-action-button"
+        class="pitch-card-action-button"
         data-toggle="collapse"
         href="#comments_list"
         role="button"
         aria-expanded="false"
         aria-controls="comments_list"
       >
-        <i>({{item.comments}})</i>
+        <i class="fas fa-comment primary-shade"
+          ><span class="custom-bold-body my-auto">
+            ({{item.comment_count}})</span
+          ></i
+        >
       </button>
       <div class="collapse" id="collapseExample">
         <ul class="list-group">
