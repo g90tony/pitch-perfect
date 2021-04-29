@@ -23,48 +23,11 @@
       <p class="custom-body">{{item.body}}</p>
     </div>
     <div class="pitch-card-actions mx-3">
-      <button class="pitch-card-action-button">
-        <i class="fas fa-heart red-shade"
-          ><span class="custom-bold-body my-auto"> ({{item.up_votes}})</span></i
+      <a href="/pitch/{{item.id}}" class="pitch-card-action-button">
+        <i class="fas fa-comment primary-shade mx-2">
+          <span class="custom-bold-body">View Comments</span></i
         >
-      </button>
-
-      <button class="pitch-card-action-button">
-        <i class="fas fa-heart-broken red-shade"
-          ><span class="custom-bold-body my-auto">
-            ({{item.down_votes}})</span
-          ></i
-        >
-      </button>
-
-      <button
-        class="pitch-card-action-button"
-        data-toggle="collapse"
-        href="#comments_list"
-        role="button"
-        aria-expanded="false"
-        aria-controls="comments_list"
-      >
-        <i class="fas fa-comment primary-shade"
-          ><span class="custom-bold-body my-auto">
-            ({{item.comment_count}})</span
-          ></i
-        >
-      </button>
-      <div class="collapse" id="collapseExample">
-        <ul class="list-group">
-          <li class="list-group-item">
-            {% for comment in item.comments %}
-            <div class="media m-2">
-              <div class="media-body">
-                <p class="custom-body-bold">{{comment.username}}</p>
-                <p class="custom-sub-body">{{comment.comment}}</p>
-              </div>
-            </div>
-            {% endfor %}
-          </li>
-        </ul>
-      </div>
+      </a>
     </div>
   </div>
 </div>
