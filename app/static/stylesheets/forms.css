@@ -15,9 +15,21 @@
   justify-content: center;
 }
 
+.profile-form {
+  margin: 0 auto;
+  width: 200px;
+}
+
+.profile-form-button {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
 .custom-input {
   border-radius: 20px !important;
   margin: 0 5px;
   width: 100%;
   border: 1px solid #80a6ba !important;
+  font-size: 13px;
 }
