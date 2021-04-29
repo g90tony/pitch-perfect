@@ -21,14 +21,18 @@
   <hr class="mx-auto w-75 card-divider" />
 
   <div class="mx-4 my-0">
-    <form method="POST" class="my-3">
-      <label class="custom-bold-body text-center mb-0" for=""
+    <form
+      action="{{url_for('main.profile')}}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label class="custom-bold-body text-center mb-0" for="photo"
         >Update Avatar</label
       >
       <input
         type="file"
         class="form-control-file form-control form-control-sm custom-input w-100 mb-2"
-        name="photos"
+        name="photo"
         accept="image/*"
       />
 
