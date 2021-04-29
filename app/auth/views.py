@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash
 from flask_login import login_user, logout_user, login_required
-
+from .. import photos   
 from . import auth
 from ..models import User
 from .forms import RegistrationForm, LoginForm
@@ -28,7 +28,13 @@ def register():
     new_user = RegistrationForm()
     
     if new_user.validate_on_submit():
-        user = User(first_name = new_user.first_name.data,last_name = new_user.last_name.data ,user_email = new_user.email.data ,bio = '' ,avatar = new_user.avatar ,hash_pass = new_user.password) 
+        
+        if 'photo' in request.files:
+            filename = photos.save(request.files['photo'])
+            path = f'images/{filename}'
+
+        
+        user = User(first_name = new_user.first_name.data,last_name = new_user.last_name.data ,user_email = new_user.email.data ,bio = '' ,avatar = path ,hash_pass = new_user.password) 
         db.session.add(user)
         db.session.commit()
         
