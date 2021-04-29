@@ -5,7 +5,7 @@ from wtforms.validators import Required
 
 
 class BioUpdateForm(FlaskForm):
-    bioLabel = Markup(" <p class='custom-bold-body mb-0'>Update your bios</p>") 
+    bioLabel = Markup(" <p class='custom-bold-body mb-0'>Update your bio</p>") 
     new_biography = TextAreaField(bioLabel)
 
 
@@ -23,3 +23,7 @@ class UpdatePasswordForm(FlaskForm):
     old_password = PasswordField(old_passwordLabel, validators = [Required()])
     new_password = PasswordField(new_passwordLabel, validators = [Required()])
     new_password2 = PasswordField(new_password2Label, validators = [Required()])
+
+class NewCommentForm(FlaskForm):
+    commentLabel = Markup(" <p class='custom-bold-body mb-0'>Type a comment below</p>")
+    new_comment = TextAreaField(commentLabel, validators = [Required()])
