@@ -2,7 +2,7 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 <div class="card filter-card shadow">
-  <div class="card-body mx-4">
+  <div class="card-body mx-auto">
     <p class="custom-bold-title text-center">Change password</p>
     <form method="POST" class="profile-form">
       {{form.csrf_token()}}
@@ -26,13 +26,14 @@
 
   <hr class="mx-auto w-75 card-divider" />
 
-  <div class="card-body mx-4">
+  <div class="card-body mx-auto">
     <p class="custom-bold-title text-center">Update Biography</p>
     <form method="POST" class="">
       {{form.csrf_token()}}
       <!-- email input -->
       {{wtf.form_field(bio_form.new_biography, class='form-control
-      form-control-sm custom-input', placeholder ='write something...')}}
+      form-control-sm custom-input', placeholder ='write something...',
+      rows=5)}}
 
       <div class="profile-form-button">
         <button type="submit" class="login-button">save</button>
