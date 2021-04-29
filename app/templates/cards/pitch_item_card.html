@@ -15,7 +15,7 @@
   <hr class="mx-auto w-75 card-divider" />
 
   <div class="card-body my-2">
-    <form method="POST" class="pitch-form">
+    <form method="POST" class="pitch-form" action="{{url_for('main.index')}}">
       {{form.csrf_token()}}
       <!-- email input -->
       {{wtf.form_field(form.new_pitch, class='form-control form-control-sm
